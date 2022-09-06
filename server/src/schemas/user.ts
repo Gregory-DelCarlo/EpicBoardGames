@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 export const User = new mongoose.Schema({
-    usernamme: {
+    username: {
                     type: String,
                     required: true,
                     minLength: [3, 'Must be at least length 3, got {VALUE}'],

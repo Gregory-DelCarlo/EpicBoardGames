@@ -6,10 +6,10 @@ export async function connectToDatabase(uri: string) {
 
     let userSchema = new mongoose.Schema(User);  
     const userModel = db.model('UserModel', userSchema);
-    await userModel.create({
-        username: "First_user",
-        email: "Anemail@gmail.com",
-        password: "123456"
-    });
+    // await userModel.create({
+    //     username: "First_user",
+    //     email: "Anemail@gmail.com",
+    //     password: "123456"
+    // });
     console.log(userModel.find({}));
 }

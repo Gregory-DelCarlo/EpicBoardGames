@@ -19,7 +19,7 @@ connectToDatabase(ATLAS_URI)
     .then(() => { // boot server after connection is made
         const app = express();
         app.use(cors());
-        app.use(morgan());
+        app.use(morgan("combined"));
 
         app.get('/', (_req, res) => {
             res.send("hello express");

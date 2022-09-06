@@ -1,6 +1,6 @@
-import mongoose from "mongoose"
+import {Schema, Model} from "mongoose"
 
-export const User = new mongoose.Schema({
+export const UserSchema = new Schema({
     username: {
                     type: String,
                     required: true,
@@ -17,8 +17,11 @@ export const User = new mongoose.Schema({
                 require: true,
                 minLength: [6, 'Must be at least length 6, got {VALUE}']
             },
-    cart: Array<String>,
-    wishlist: Array<String>,
-    games: Array<String>,
-    friends: Array<String>
-})
+    cart: Array<Schema.Types.ObjectId>,
+    wishlist: Array<Schema.Types.ObjectId>,
+    games: Array<Schema.Types.ObjectId>,
+    friends: Array<Schema.Types.ObjectId>
+});
+
+const User = new Model('users', UserSchema);
+module.exports = User;

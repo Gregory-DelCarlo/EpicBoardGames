@@ -1,6 +1,16 @@
-import {Schema, Model} from "mongoose"
+import {Schema, model, Types} from "mongoose"
 
-export const UserSchema = new Schema({
+interface IUser {
+    username: string;
+    email: string;
+    password: string;
+    // cart?: Array<Types.ObjectId>;
+    // wishlist?: Array<Types.ObjectId>;
+    // games?: Array<Types.ObjectId>;
+    // friends?: Array<Types.ObjectId>;
+}
+
+const userSchema = new Schema<IUser>({
     username: {
                     type: String,
                     required: true,
@@ -17,11 +27,10 @@ export const UserSchema = new Schema({
                 require: true,
                 minLength: [6, 'Must be at least length 6, got {VALUE}']
             },
-    cart: Array<Schema.Types.ObjectId>,
-    wishlist: Array<Schema.Types.ObjectId>,
-    games: Array<Schema.Types.ObjectId>,
-    friends: Array<Schema.Types.ObjectId>
+    // cart: Array<Schema.Types.ObjectId>,
+    // wishlist: Array<Schema.Types.ObjectId>,
+    // games: Array<Schema.Types.ObjectId>,
+    // friends: Array<Schema.Types.ObjectId>
 });
 
-const User = new Model('users', UserSchema);
-module.exports = User;
+export const User = model<IUser>('IUser', userSchema);

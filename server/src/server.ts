@@ -33,10 +33,14 @@ mongoose.connect(ATLAS_URI)
         
         //set root response lol
         app.get('/', async (_req, res) => {
-            let users = User.find();
-            console.log(`\nwtf does this look like???\n${users}`);
+            let users = User.find({}, (err: any, user: any) => {
+                if (err) console.error(err);
+
+                console.log(user);
+                res.send(user);
+            });
             // res.send(users);
-            res.send("Can you hear the sounds of my soul crying");
+            // res.send("Can you hear the sounds of my soul crying");   
         })
 
         app.listen(3000, ()=> {

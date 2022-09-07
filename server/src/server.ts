@@ -2,10 +2,11 @@ import express from "express";
 const app = express();
 import * as dotenev from "dotenv";
 import cors from "cors";
-import { User } from "./models/user";
 import mongoose from "mongoose";
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
+
+import { gamesRouter } from "./routes/games";
 
 //autoload or .env file
 dotenev.config();
@@ -30,18 +31,7 @@ mongoose.connect(ATLAS_URI)
         app.use(morgan("combined"));
 
         //connect routes
-        
-        //set root response lol
-        app.get('/', async (_req, res) => {
-            let users = User.find({}, (err: any, user: any) => {
-                if (err) console.error(err);
-
-                console.log(user);
-                res.send(user);
-            });
-            // res.send(users);
-            // res.send("Can you hear the sounds of my soul crying");   
-        })
+        app.use("/games", gamesRouter);
 
         app.listen(3000, ()=> {
             console.log("listening on port 3000")

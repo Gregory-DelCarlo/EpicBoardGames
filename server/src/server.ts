@@ -1,8 +1,11 @@
+import express from "express";
+const app = express();
 import * as dotenev from "dotenv";
 import cors from "cors";
-import express from "express";
-import { connectToDatabase } from "./database";
-var morgan = require("morgan");
+import { User } from "./models/user";
+import mongoose from "mongoose";
+const bodyParser = require('body-parser');
+const morgan = require("morgan");
 
 //autoload or .env file
 dotenev.config();
@@ -14,15 +17,26 @@ if (!ATLAS_URI) {
     process.exit(1);
 }
 
-//connect to db
-connectToDatabase(ATLAS_URI)
+mongoose.connect(ATLAS_URI)
     .then(() => { // boot server after connection is made
-        const app = express();
+        console.log("Successfully connected to MongoDB.");
+        console.log("booting server");
+        // for json parsing
+        app.use(bodyParser.urlencoded({extended: false}));
+        app.use(bodyParser.json());
+        // to prevent XDR attacks
         app.use(cors());
+        //logger   
         app.use(morgan("combined"));
 
-        app.get('/', (_req, res) => {
-            res.send("hello express");
+        //connect routes
+        
+        //set root response lol
+        app.get('/', async (_req, res) => {
+            let users = User.find();
+            console.log(`\nwtf does this look like???\n${users}`);
+            // res.send(users);
+            res.send("Can you hear the sounds of my soul crying");
         })
 
         app.listen(3000, ()=> {
@@ -30,3 +44,4 @@ connectToDatabase(ATLAS_URI)
         })
     })
     .catch(error => console.log(error));
+

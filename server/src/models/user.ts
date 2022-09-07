@@ -33,4 +33,4 @@ const userSchema = new Schema<IUser>({
     // friends: Array<Schema.Types.ObjectId>
 });
 
-export const User = model<IUser>('IUser', userSchema);
+export const User = model<IUser>('users', userSchema);

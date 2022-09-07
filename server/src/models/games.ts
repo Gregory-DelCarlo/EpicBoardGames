@@ -1,24 +1,20 @@
 import {Schema, model, Types} from "mongoose";
 
 interface IGames {
-    _id: Types.ObjectId;
     name: string;
     type: "base game" | "expansion" | "art";
     description?: string;
     rating?: number;
-    creator: string;
+    creator?: string;
     features: Types.Array<String>
     price: number;
-    release_date: Date;
-    add_ons: Types.DocumentArray<IGames>;
-    editions: Types.DocumentArray<IGames>;
+    release_date?: Date;
+    add_ons?: Types.DocumentArray<Types.ObjectId>;
+    editions?: Types.DocumentArray<Types.ObjectId>;
+    base_game?:Types.ObjectId;
 };
 
 const gamesSchema = new Schema<IGames>({
-    _id: {
-        type: Schema.Types.ObjectId,
-        index: true
-    },
     name: {
         type: String,
         required: [true, "name is required"],
@@ -39,20 +35,27 @@ const gamesSchema = new Schema<IGames>({
         max: [10, "rating can't be higher than 10"]
     },
     creator: { type: String },
+    features: {
+        type: [String],
+        minLength: [1, "your game must have at least 1 feature"]
+    },
     price: {
         type: Number,
         required: [true, "Price is required"]
     },
-    add_ons: { 
-        type: [{_id: Schema.Types.ObjectId }],
+    add_ons: [{ 
+        type: Schema.Types.ObjectId,
         ref: 'Game'
-    },
+    }],
     release_date: { 
-        type: Date, 
-        required: true 
+        type: Date
     },
-    editions: { 
-        type: [{_id: Schema.Types.ObjectId }],
+    editions: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Game'
+    }],
+    base_game: {
+        type: Schema.Types.ObjectId,
         ref: 'Game'
     }
 });

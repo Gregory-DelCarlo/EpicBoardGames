@@ -22,40 +22,42 @@ gamesRouter.post('/', (req, res) => {
         name: req.body.name,
         type: req.body.type,
         description: req?.body?.description,
-        rating: req.body.rating,
-        creator: req.body.creator,
+        rating: req?.body?.rating,
+        creator: req?.body?.creator,
         features: req.body.features,
         price: req.body.price,
-        release_date: req.body.release_date,
+        release_date: req?.body?.release_date,
         add_ons: req?.body?.add_ons,
         editions: req?.body?.editions
     });
-
+    console.log(newGame);
     newGame.save()
         .then(game => res.json(game))
-        .catch( () => res.status(500).send({failedToCreate: "Failed to create game"}));
+        .catch(err => res.status(500).send(err)); // gives better messages with mongoose
+        // .catch( () => res.status(500).send({failedToCreate: "Failed to create game"}));
 });
 //update
 gamesRouter.put('/:id', (req, res) => {
-    const updatedGame = new Game({
+    const updatedGame = {
         name: req.body.name,
         type: req.body.type,
         description: req?.body?.description,
-        rating: req.body.rating,
-        creator: req.body.creator,
+        rating: req?.body?.rating,
+        creator: req?.body?.creator,
         features: req.body.features,
         price: req.body.price,
-        release_date: req.body.release_date,
+        release_date: req?.body?.release_date,
         add_ons: req?.body?.add_ons,
         editions: req?.body?.editions
-    });
+    };
 
     Game.findByIdAndUpdate(
         req?.params?.id,
-        { $set: updatedGame }
+        updatedGame
     )
     .then(game => res.status(201).send(game))
-    .catch( () => res.status(500).send({failedToUpdate: "Failed to update game"}));
+    .catch( err => res.status(500).send(err));
+    // .catch( () => res.status(500).send({failedToUpdate: "Failed to update game"}));
 });
 //destroy
 gamesRouter.delete("/:id", (req, res) => {

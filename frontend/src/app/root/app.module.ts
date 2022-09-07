@@ -1,22 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 import { StoreModule } from '@ngrx/store';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+import { GameListComponent } from '../components/games-list/games-list.component';
+
 import { gamesReducer } from '../reducers/games.reducer';
+import { gameService } from '../services/games.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GameListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({games: gamesReducer}),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [gameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

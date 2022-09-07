@@ -33,4 +33,4 @@ const userSchema = new Schema<IUser>({ // dont need id here as it is autoset
     // friends: Types.Array<Schema.Types.ObjectId>
 });
 
-export const User = model<IUser>('users', userSchema);
+export const User = model<IUser>('User', userSchema);

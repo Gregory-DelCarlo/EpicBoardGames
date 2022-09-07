@@ -28,7 +28,8 @@ gamesRouter.post('/', (req, res) => {
         price: req.body.price,
         release_date: req?.body?.release_date,
         add_ons: req?.body?.add_ons,
-        editions: req?.body?.editions
+        editions: req?.body?.editions,
+        base_game: req?.body?.base_game
     });
     console.log(newGame);
     newGame.save()
@@ -48,7 +49,8 @@ gamesRouter.put('/:id', (req, res) => {
         price: req.body.price,
         release_date: req?.body?.release_date,
         add_ons: req?.body?.add_ons,
-        editions: req?.body?.editions
+        editions: req?.body?.editions,
+        base_game: req?.body?.base_game
     };
 
     Game.findByIdAndUpdate(

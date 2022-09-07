@@ -1,16 +1,17 @@
 import {Schema, model, Types} from "mongoose"
 
 interface IUser {
+    _id: Types.ObjectId;
     username: string;
     email: string;
     password: string;
-    // cart?: Array<Types.ObjectId>;
-    // wishlist?: Array<Types.ObjectId>;
-    // games?: Array<Types.ObjectId>;
-    // friends?: Array<Types.ObjectId>;
+    // cart?: Types.Array<Types.ObjectId>;
+    // wishlist?: Types.Array<Types.ObjectId>;
+    // games?: Types.Array<Types.ObjectId>;
+    // friends?: Types.Array<Types.ObjectId>;
 }
 
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<IUser>({ // dont need id here as it is autoset
     username: {
                     type: String,
                     required: true,
@@ -27,10 +28,10 @@ const userSchema = new Schema<IUser>({
                 require: true,
                 minLength: [6, 'Must be at least length 6, got {VALUE}']
             },
-    // cart: Array<Schema.Types.ObjectId>,
-    // wishlist: Array<Schema.Types.ObjectId>,
-    // games: Array<Schema.Types.ObjectId>,
-    // friends: Array<Schema.Types.ObjectId>
+    // cart: Types.Array<Schema.Types.ObjectId>,
+    // wishlist: Types.Array<Schema.Types.ObjectId>,
+    // games: Types.Array<Schema.Types.ObjectId>,
+    // friends: Types.Array<Schema.Types.ObjectId>
 });
 
 export const User = model<IUser>('users', userSchema);

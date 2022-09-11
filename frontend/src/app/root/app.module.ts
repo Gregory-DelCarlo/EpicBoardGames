@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { GameListComponent } from '../components/games-list/games-list.component';
+import { GameIndexComponent } from '../components/games-list/games-list.component';
 
 import { gamesReducer } from '../reducers/games.reducer';
 import { gameService } from '../services/games.service';
@@ -13,7 +13,7 @@ import { gameService } from '../services/games.service';
 @NgModule({
   declarations: [
     AppComponent,
-    GameListComponent
+    GameIndexComponent
   ],
   imports: [
     BrowserModule,

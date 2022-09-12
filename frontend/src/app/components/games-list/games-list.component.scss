@@ -1,0 +1,40 @@
+.all-games{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // align-content: center;
+  border: 5px solid black;
+  padding: 10px 0px 0px 0px;
+  margin: 10px;
+  .game-list{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px;
+
+    .game-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid red;
+      height: 30%;
+      width: 25%;
+      margin: 1px;
+
+      p {
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  #title{
+    font-size: 24px;
+    color: green;
+  }
+}

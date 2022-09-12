@@ -1,9 +1,11 @@
 <div class="all-games">
-  <div>Here are all the games</div><br/>
-  <!--Need async here or errors will arise-->
-  <div class="game-item" *ngFor="let game of (games$ | async); let i = index">
-    <p>{{i+1}}. {{game.name}}</p>
-    <p>Type: {{game.type}}</p>
-    <p>$ {{game.price}}</p><br/>
+  <div id="title">Here are all the games</div><br/>
+  <div class="game-list">
+    <!--Need async here or errors will arise-->
+    <div class="game-item" *ngFor="let game of (games$ | async); let i = index">
+      <p>{{i+1}}. {{game.name}}</p>
+      <p>Type: {{game.type}}</p>
+      <p>$ {{game.price}}</p><br/>
+    </div>
   </div>
 </div>

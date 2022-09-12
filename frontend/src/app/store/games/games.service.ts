@@ -11,11 +11,32 @@ export class gameService {
   private game$: Subject<Game> = new Subject();
   constructor(private http: HttpClient) {}
 
+  // for use in components
+  // all games
   fetchGames(): Subject<Game[]> {
     this.allGames();
     return this.games$;
   }
-
+  // single game
+  fetchGame(game_id: string): Subject<Game> {
+    this.getGame(game_id);
+    return this.game$;
+  }
+  // new game
+  newGame(game: Game): Subject<Game> {
+    this.createGame(game);
+    return this.game$;
+  }
+  // edit game
+  changeGame(game_id: string, game: Game): Subject<Game> {
+    this.editGame(game_id, game);
+    return this.game$;
+  }
+  // delete game
+  deleteGame(game_id: string) {
+    this.destroyGame(game_id);
+    return {};
+  }
 
 // http calls
   private allGames() {

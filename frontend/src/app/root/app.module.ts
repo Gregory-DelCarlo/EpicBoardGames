@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { gamesReducer } from '../store/games/games.reducer';
 import { gameService } from '../store/games/games.service';
 import { CommonModule } from '@angular/common';
-import { GamesStateModule } from '../store/games';
+import { RootStoreModule } from '../store/root';
 
 @NgModule({
   declarations: [
@@ -19,11 +19,9 @@ import { GamesStateModule } from '../store/games';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({games: gamesReducer}),
     HttpClientModule,
-    GamesStateModule
+    RootStoreModule,
   ],
-  providers: [gameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

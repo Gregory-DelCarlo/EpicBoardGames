@@ -8,16 +8,20 @@ import { AppComponent } from './app.component';
 
 import { gamesReducer } from '../store/games/games.reducer';
 import { gameService } from '../store/games/games.service';
+import { CommonModule } from '@angular/common';
+import { GamesStateModule } from '../store/games';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({games: gamesReducer}),
-    HttpClientModule
+    HttpClientModule,
+    GamesStateModule
   ],
   providers: [gameService],
   bootstrap: [AppComponent]

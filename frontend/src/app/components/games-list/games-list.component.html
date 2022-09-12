@@ -1,5 +1,9 @@
-<div class="game-item" *ngFor="let game of games$">
+<!-- <div class="game-item" *ngFor="let game of games$">
   <p>{{game.name}}</p>
   <p>Type: {{game.type}}</p>
   <p>${{game.price}}</p>
+</div> -->
+
+<div *ngIf="games$">
+  <h2>{{games$}}</h2>
 </div>

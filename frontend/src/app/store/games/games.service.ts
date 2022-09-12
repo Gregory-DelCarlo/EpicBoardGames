@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { of, Observable, Subject} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Game } from '../models/games.models';
+import { Game } from './games.model';
 
 @Injectable({ providedIn: 'root' })
 export class gameService {

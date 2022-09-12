@@ -1,7 +1,7 @@
 import {createAction, props } from '@ngrx/store';
-import { Game } from '../models/games.models';
+import { Game } from './games.model';
 
 export const retrieveGamesList = createAction(
-  '[Game List/API] Retrieve Games Success',
+  '[Game List] Retrieve Games Success',
   props<{ games: ReadonlyArray<Game>}>()
 );

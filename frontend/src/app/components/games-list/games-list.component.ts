@@ -1,14 +1,14 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { gameService } from 'src/app/services/games.service';
-import { retrieveGamesList } from 'src/app/actions/games.actions';
-import { Game } from '../../models/games.models';
+import { gameService } from 'src/app/store/games/games.service';
+import { retrieveGamesList } from 'src/app/store/games/games.actions';
+import { Game } from '../../store/games/games.model';
 import { Observable } from 'rxjs';
 import { selectGames } from './games-list.selector';
 
 @Component({
   selector: 'app-game-index',
-  templateUrl: './games-index.component.html'
+  templateUrl: './games-list.component.html'
 })
 export class GameIndexComponent implements OnInit {
   games$: Observable<Game[]>;
@@ -17,7 +17,9 @@ export class GameIndexComponent implements OnInit {
   constructor(
     private gameService: gameService,
     private store: Store // for accessing state
-    ) {}
+    ) {
+      this.games$ = new Observable<Game[]>;
+    }
 
     ngOnInit() {
       // this.games$ = this.gameService.fetchGames()

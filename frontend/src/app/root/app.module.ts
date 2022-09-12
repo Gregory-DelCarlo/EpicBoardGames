@@ -6,8 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { gamesReducer } from '../store/games/games.reducer';
-import { gameService } from '../store/games/games.service';
 import { CommonModule } from '@angular/common';
 import { RootStoreModule } from '../store/root';
 

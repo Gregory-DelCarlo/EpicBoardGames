@@ -28,14 +28,14 @@ export class gameService {
     return this.game$;
   }
   // edit game
-  changeGame(game_id: string, game: Game): Subject<Game> {
-    this.editGame(game_id, game);
+  changeGame(game: Game): Subject<Game> {
+    this.editGame(game._id, game);
     return this.game$;
   }
   // delete game
   deleteGame(game_id: string) {
     this.destroyGame(game_id);
-    return {};
+    return this.game$;
   }
 
 // http calls
@@ -72,8 +72,10 @@ export class gameService {
   }
 
   private destroyGame(game_id: string) {
-    this.http.delete(
+    this.http.delete<Game>(
       `${this.url}/games/${game_id}`
-    )
+    ).subscribe(game => {
+      this.game$.next(game);
+    })
   }
 }

@@ -13,13 +13,13 @@ import { selectGames } from './games-list.selector';
 })
 export class GameListComponent implements OnInit {
   games$: Observable<Game[]>;
-
+  // @Input() games: ReadonlyArray<Game> = []
 
   constructor(
     private gameService: gameService,
     private store: Store // for accessing state
     ) {
-      this.games$ = this.store.select(selectGames);
+      this.games$ = this.store.select(selectGames)
     }
 
     ngOnInit() {

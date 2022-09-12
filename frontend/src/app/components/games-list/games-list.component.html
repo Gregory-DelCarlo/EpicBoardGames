@@ -1,10 +1,12 @@
-<!--Need async here or errors will arise-->
-<div class="game-item" *ngFor="let game of (games$ | async); let i = index">
-  <p>{{i+1}}. {{game.name}}</p>
-  <p>Type: {{game.type}}</p>
-  <p>${{game.price}}</p>
+<div class="all-games">
+  <div>Here are all the games</div><br/>
+  <!--Need async here or errors will arise-->
+  <div class="game-item" *ngFor="let game of (games$ | async); let i = index">
+    <p>{{i+1}}. {{game.name}}</p>
+    <p>Type: {{game.type}}</p>
+    <p>$ {{game.price}}</p><br/>
+  </div>
 </div>
-
 <!-- <div *ngIf="games$">
   <h2>{{games$}}</h2>
 </div> -->

@@ -30,7 +30,7 @@ export class GameListComponent implements OnInit {
       // this.games$ = this.store.select(selectGames); // for referencing   state
 
       // console.log(this.store);
-      console.log(this.games$);
+      // console.log(this.games$);
   }
 }
 

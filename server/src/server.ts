@@ -1,5 +1,5 @@
 import express from "express";
-const app = express();
+export const app = express();
 import * as dotenev from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -11,7 +11,7 @@ import { gamesRouter } from "./routes/games";
 //autoload or .env file
 dotenev.config();
 
-const { ATLAS_URI } = process.env;
+const { ATLAS_URI, NODE_ENV } = process.env;
 // throw error and abort if no db connection is found
 if (!ATLAS_URI) {
     console.error("No database connection found, please define it in ./server/.env")
@@ -32,10 +32,13 @@ mongoose.connect(ATLAS_URI)
 
         //connect routes
         app.use("/games", gamesRouter);
-
-        app.listen(3000, ()=> {
-            console.log("listening on port 3000")
-        })
+        
+        // set port if we aren't in the testing environment
+        if (NODE_ENV !== "test") {
+            app.listen(3000, ()=> {
+                console.log("listening on port 3000")
+            });
+        }
     })
     .catch(error => console.log(error));
 

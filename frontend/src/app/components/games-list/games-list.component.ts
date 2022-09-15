@@ -27,5 +27,6 @@ export class GameListComponent implements OnInit {
       // calls api endpoint, and action to add games to state
       gameDispatchers.retrieveGamesList(this.store, this.gameService)
   }
+  
 }
 

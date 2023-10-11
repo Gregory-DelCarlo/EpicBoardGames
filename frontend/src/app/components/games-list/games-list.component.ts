@@ -8,10 +8,11 @@ import { Observable } from 'rxjs';
 import { selectAllGames } from './games-list.selector';
 
 @Component({
-  selector: 'app-game-list',
+  selector: 'app-game-list', // this is the tag used to render the component
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.scss']
 })
+
 export class GameListComponent implements OnInit {
   games$: Observable<Game[]>;
 

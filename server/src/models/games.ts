@@ -1,5 +1,6 @@
 import {Schema, model, Types} from "mongoose";
 
+// to create a model in TS first create an interface to represent it
 interface IGames {
     name: string;
     type: "base game" | "expansion" | "art";
@@ -12,8 +13,9 @@ interface IGames {
     add_ons?: Types.DocumentArray<Types.ObjectId>;
     editions?: Types.DocumentArray<Types.ObjectId>;
     base_game?:Types.ObjectId;
-};
+}
 
+// our actual schema will be a mongoose Schema object bound to our interface
 const gamesSchema = new Schema<IGames>({
     name: {
         type: String,
@@ -60,4 +62,10 @@ const gamesSchema = new Schema<IGames>({
     }
 });
 
+// finally export the model binding it to the interface and using the Schema
 export const Game = model<IGames>('Game', gamesSchema);
+
+/*
+Creating the mongoose model in this way creates
+type protection throughout
+*/

@@ -1,5 +1,5 @@
 import express from "express";
-export const app = express();
+export const app = express(); // create express server
 import * as dotenev from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -8,7 +8,7 @@ const morgan = require("morgan");
 
 import { gamesRouter } from "./routes/games";
 
-//autoload or .env file
+// autoload or .env file
 dotenev.config();
 
 const { ATLAS_URI, NODE_ENV } = process.env;
@@ -17,6 +17,8 @@ if (!ATLAS_URI) {
     console.error("No database connection found, please define it in ./server/.env")
     process.exit(1);
 }
+
+mongoose.set('strictQuery', false);
 
 mongoose.connect(ATLAS_URI)
     .then(() => { // boot server after connection is made
@@ -40,5 +42,5 @@ mongoose.connect(ATLAS_URI)
             });
         }
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error)); // throw any errors to the console
 

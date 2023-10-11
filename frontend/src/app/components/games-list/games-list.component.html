@@ -2,6 +2,7 @@
   <div id="title">Here are all the games</div><br/>
   <ol class="game-list">
     <!--Need async here or errors will arise-->
+    <!--Program fails to find object game without it-->
     <li class="game-item" *ngFor="let game of (games$ | async)">
       <p>{{game.name}}</p>
       <p>Type: {{game.type}}</p>

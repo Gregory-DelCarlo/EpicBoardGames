@@ -13,26 +13,28 @@ const request = require('supertest');
 
 // const root: string = "http://localhost:3000";
 
-describe("games functional tests", () => {
-    describe("GET /games", () => {
-        test("success", async () => {
-            let err$: any;
-            let res$: any;
-            request(app).get("/games").expect(200);
-                // .end((err: any, res: any) => {
-                //     console.log(`What is the response ${res.type}\nWhat is the error ${res.type}`)
-                //     if (err) err$ = err;
-                //     res$ = res;
-                //     // console.log(res.body);
-                // });
-            // expect(res$.statusCode).toEqual(200);
-            // expect(res$.body).toBeUndefined();
-            // console.log(res);
-            // expect(res.statusCode).toEqual(200);
+
+
+// describe("games functional tests", () => {
+//     describe("GET /games", () => {
+//         test("success", async () => {
+//             let err$: any;
+//             let res$: any;
+//             request(app).get("/games").expect(200);
+//                 // .end((err: any, res: any) => {
+//                 //     console.log(`What is the response ${res.type}\nWhat is the error ${res.type}`)
+//                 //     if (err) err$ = err;
+//                 //     res$ = res;
+//                 //     // console.log(res.body);
+//                 // });
+//             // expect(res$.statusCode).toEqual(200);
+//             // expect(res$.body).toBeUndefined();
+//             // console.log(res);
+//             // expect(res.statusCode).toEqual(200);
             
-        });
-    });
-});
+//         });
+//     });
+// });
 
 // test("Dummy unit test", () => {
 //     const actual:any = null; // not implemented yet

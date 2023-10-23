@@ -1,17 +1,35 @@
 // import request from "supertest";
-import { describe, expect, test} from '@jest/globals';
+import { 
+    afterAll,
+    beforeAll, 
+    describe, 
+    expect, 
+    test, 
+    it} 
+    from '@jest/globals';
 const app = require('express')();
 // import { app } from "../../src/server";
-// import * as db from "../config/database";
+import * as db from "../config/database";
+import { types } from 'util';
 const request = require('supertest');
 
 // const agent = request.agent(app);
 
-// beforeAll(async () => await db.connect());
+beforeAll(async () => await db.connect());
 // afterEach(async () => await db.clear());
-// afterAll(async () => await db.close());
+afterAll(async () => await db.clear());
+afterAll(async () => await db.close());
 
-// const root: string = "http://localhost:3000";
+const root: string = "http://localhost:4200";
+
+
+describe("Get /api/products", () => {
+    it("should return all products", async () => {
+        const res = await request(app).get(`${root}/games`);
+        expect(res.statusCode).toBe(200);
+        expect(res.body.length).toBeGreaterThan(0);
+    });
+});
 
 
 

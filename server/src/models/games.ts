@@ -63,9 +63,9 @@ const gamesSchema = new Schema<IGames>({
 });
 
 // finally export the model binding it to the interface and using the Schema
-export const Game = model<IGames>('Game', gamesSchema);
-
+const gameModel = model<IGames>('Game', gamesSchema);
 /*
 Creating the mongoose model in this way creates
 type protection throughout
 */
+export default gameModel; //export only the model for easy importing

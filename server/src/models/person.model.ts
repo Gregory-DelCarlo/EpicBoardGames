@@ -1,4 +1,4 @@
-import mongoose, {Types, Schema, Document} from "mongoose";
+import mongoose, {Schema, Document} from "mongoose";
 
 export interface IPerson {
     name: string;

@@ -9,6 +9,23 @@ import {beforeAll,
 import personModel, {IPerson, PersonDocument} from "../src/models/person.model"
 import { faker } from "@faker-js/faker";
 
+// expect().toMatchObject() isnt working with TS so I just created a function to do it
+const personMismatchChecker = (first:IPerson, second:IPerson) => {
+    let flag = true;
+    if (
+        first.name == second.name &&
+        first.lastName == second.lastName &&
+        first.address == second.address &&
+        first.age == second.age &&
+        first.gender == second.gender &&
+        first.job == second.job
+    ){
+        flag = false;
+    }
+
+    return flag;
+};
+
 //for all it blocks use async and await the data or they will not run properly
 
 describe("personModel Testing", () => {
@@ -35,12 +52,7 @@ describe("personModel Testing", () => {
             const createdPerson = await person.save();
 
             expect(createdPerson).toBeDefined();
-            expect(createdPerson.name).toBe(person.name);
-            expect(createdPerson.lastName).toBe(person.lastName);
-            expect(createdPerson.address).toBe(person.address);
-            expect(createdPerson.age).toBe(person.age);
-            expect(createdPerson.gender).toBe(person.gender);
-            expect(createdPerson.job).toBe(person.job);
+            expect(personMismatchChecker(createdPerson, person)).toBeFalsy();
         });
     });
 
@@ -83,20 +95,3 @@ describe("personModel Testing", () => {
         });
     });
 });
-
-// expect().toMatchObject() isnt working with TS so I just created a function to do it
-const personMismatchChecker = (first:IPerson, second:IPerson) => {
-    let flag = true;
-    if (
-        first.name == second.name &&
-        first.lastName == second.lastName &&
-        first.address == second.address &&
-        first.age == second.age &&
-        first.gender == second.gender &&
-        first.job == second.job
-    ){
-        flag = false;
-    }
-
-    return flag;
-};

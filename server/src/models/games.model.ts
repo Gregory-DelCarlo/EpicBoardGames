@@ -22,7 +22,8 @@ export interface GameDocument extends IGame, Document {
 }
 
 // our actual schema will be a mongoose Schema object bound to our interface
-const GameSchema = new Schema<GameDocument>({
+const GameSchema = new Schema<GameDocument>(
+    {
     name: {
         type: String,
         required: [true, "name is required"],
@@ -68,10 +69,11 @@ const GameSchema = new Schema<GameDocument>({
     }},
     {
         timestamps: true,
-});
+    }
+);
 
 // finally export the model binding it to the interface and using the Schema
-const gameModel = mongoose.model<IGame>('Game', GameSchema);
+const gameModel = mongoose.model('Game', GameSchema);
 /*
 Creating the mongoose model in this way creates
 type protection throughout

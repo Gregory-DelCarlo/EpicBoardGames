@@ -23,13 +23,16 @@ const createFeatures = () => {
 
 // expect().toMatchObject() isnt working with TS so I just created a function to do it
 // returns true unless the first and second Object are exactly the same
-const gameMismatchChecker = (first:IGame, second:IGame) => {
+// | null to remove type errors from the bug checker
+const gameMismatchChecker = (fetched:IGame | null, defined:IGame) => {
     let flag = true;
-    if (first.name == second.name &&
-        first.type == second.type && 
-        first.features.every( (feature, index) => {return feature == second.features[index]}) &&
-        first.price == second.price) 
-        {
+    if (
+        fetched !== null &&
+        fetched.name == defined.name &&
+        fetched.type == defined.type && 
+        fetched.features.every( (feature, index) => {return feature == defined.features[index]}) &&
+        fetched.price == defined.price
+        ){
             flag = false;
         }
 

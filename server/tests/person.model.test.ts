@@ -10,9 +10,10 @@ import personModel, {IPerson, PersonDocument} from "../src/models/person.model"
 import { faker } from "@faker-js/faker";
 
 // expect().toMatchObject() isnt working with TS so I just created a function to do it
-const personMismatchChecker = (first:IPerson, second:IPerson) => {
+const personMismatchChecker = (first:IPerson | null, second:IPerson) => {
     let flag = true;
     if (
+        first !== null &&
         first.name == second.name &&
         first.lastName == second.lastName &&
         first.address == second.address &&

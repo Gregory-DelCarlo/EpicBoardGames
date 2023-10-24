@@ -49,12 +49,54 @@ describe("personModel Testing", () => {
             const fetchedPerson = await personModel.findOne({_id:person._id});
 
             expect(fetchedPerson).toBeDefined();
-            expect(fetchedPerson.name).toBe(person.name);
-            expect(fetchedPerson.lastName).toBe(person.lastName);
-            expect(fetchedPerson.address).toBe(person.address);
-            expect(fetchedPerson.age).toBe(person.age);
-            expect(fetchedPerson.gender).toBe(person.gender);
-            expect(fetchedPerson.job).toBe(person.job);
+            // function fails if fetchedPerson isnt defined
+            expect(personMismatchChecker(fetchedPerson, person)).toBeFalsy();
+        });
+    });
+
+    describe("personModel Update Test", () => {
+        it("should update the person stored", async () => {
+            const personUpdateInput: IPerson = {
+                name: faker.person.firstName(),
+                lastName: faker.person.lastName(),
+                age: faker.number.int({min:18, max:50}),
+                address: faker.location.streetAddress(),
+                gender: faker.person.sexType(),
+                job: faker.person.jobTitle(),
+            };
+
+            await personModel.updateOne({_id: person._id }, {...personUpdateInput});
+            const fetchedPerson = await personModel.findOne({_id: person._id});
+
+            expect(fetchedPerson).toBeDefined();
+            // function fails if fetchedPerson isnt defined
+            expect(personMismatchChecker(fetchedPerson, personUpdateInput)).toBeFalsy();
+            expect(personMismatchChecker(fetchedPerson, person)).toBeTruthy();
+        });
+    });
+
+    describe("personModel Delete Test", () => {
+        it("should delete the person stored", async () => {
+            await personModel.deleteOne({ _id: person._id});
+            const fetchedPerson = await personModel.findOne({ _id: person._id});
+            expect(fetchedPerson).toBeNull();
         });
     });
 });
+
+// expect().toMatchObject() isnt working with TS so I just created a function to do it
+const personMismatchChecker = (first:IPerson, second:IPerson) => {
+    let flag = true;
+    if (
+        first.name == second.name &&
+        first.lastName == second.lastName &&
+        first.address == second.address &&
+        first.age == second.age &&
+        first.gender == second.gender &&
+        first.job == second.job
+    ){
+        flag = false;
+    }
+
+    return flag;
+};

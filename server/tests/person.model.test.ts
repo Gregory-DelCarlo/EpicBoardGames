@@ -12,9 +12,9 @@ import { faker } from "@faker-js/faker";
 
 describe("personModel Testing", () => {
     // connect before testing and clear and close after
-    beforeAll(async ()=>{await db.connect()});
+    beforeAll(async ()=>{await db.connect(); console.log("connected for testing")});
     afterAll(async () => {
-        // await personModel.collection.drop();
+        await personModel.collection.drop();
         await db.disconnect();
     });
 

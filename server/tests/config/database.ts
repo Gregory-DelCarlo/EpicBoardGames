@@ -6,21 +6,14 @@ let connection: Mongoose;
 let mongoServer: MongoMemoryServer;
 
 export const connect = async () => {
-    console.log("inside connect");
     mongoServer = await MongoMemoryServer.create();
-    // mongoServer.start();
-    console.log("created memory server");
+    mongoose.set('strictQuery', false);
     connection = await mongoose.connect(mongoServer.getUri(), {autoCreate:true});
-    // connection = await MongoClient.connect(mongoServer.getUri(), {});
-    console.log("connected to memory server");
 };
 
 export const disconnect = async () => {
-    console.log("inside disconnect")
     await mongoose.connection.close();
-    console.log("connection closed");
     await mongoServer.stop();
-    console.log("server stopped");
 };
 
 export const clear = async () => {

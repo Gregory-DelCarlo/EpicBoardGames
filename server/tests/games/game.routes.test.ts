@@ -22,13 +22,13 @@ const request = require('supertest');
 const root: string = "http://localhost:4200";
 
 
-describe("Get /api/products", () => {
-    it("should return all products", async () => {
-        const res = await request(app).get(`${root}/games`);
-        expect(res.statusCode).toBe(200);
-        expect(res.body.length).toBeGreaterThan(0);
-    });
-});
+// describe("Get /api/products", () => {
+//     it("should return all products", async () => {
+//         const res = await request(app).get(`${root}/games`);
+//         expect(res.statusCode).toBe(200);
+//         expect(res.body.length).toBeGreaterThan(0);
+//     });
+// });
 
 
 

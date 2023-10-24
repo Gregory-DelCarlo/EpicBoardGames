@@ -16,12 +16,12 @@ export const disconnect = async () => {
     await mongoServer.stop();
 };
 
-export const clear = async () => {
-    const collections = mongoose.connection.collections;
-    for (const key in collections) {
-        await collections[key].deleteMany({});
-    }
-};
+// export const clear = async () => {
+//     const collections = mongoose.connection.collections;
+//     for (const key in collections) {
+//         await collections[key].deleteMany({});
+//     }
+// };
 
 // export async function connect() {
 //     try {

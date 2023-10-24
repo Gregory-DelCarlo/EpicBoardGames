@@ -1,24 +1,25 @@
 import express from "express";
 export const gamesRouter = express.Router();
-import { Game } from "../models/games";
+import "../models/games.model";
+import gameModel from "../models/games.model";
 
 gamesRouter.use(express.json());
 //index
 gamesRouter.get('/', (_req, res) => {
-    Game.find()
+    gameModel.find()
         .then( games => res.status(200).send(games))
         .catch( () => res.status(404).send({nogamesfound: "no games found"}));
 });
 //show
 gamesRouter.get('/:id', (req, res) => {
-    Game.findById(req?.params?.id)
+    gameModel.findById(req?.params?.id)
         .then( game => res.status(200).send(game))
         .then ( () => res.status(404).send({ gamenotfound: `Game ${req?.params?.id} not found`}));
 });
 //create
 gamesRouter.post('/', (req, res) => {
     // const newGame = new Game(req.body);
-    const newGame = new Game({
+    const newGame = new gameModel({
         name: req.body.name,
         type: req.body.type,
         description: req?.body?.description,
@@ -29,7 +30,7 @@ gamesRouter.post('/', (req, res) => {
         release_date: req?.body?.release_date,
         add_ons: req?.body?.add_ons,
         editions: req?.body?.editions,
-        base_game: req?.body?.base_game
+        bagameModel: req?.body?.base_game
     });
     console.log(newGame);
     newGame.save()
@@ -53,7 +54,7 @@ gamesRouter.put('/:id', (req, res) => {
         base_game: req?.body?.base_game
     };
 
-    Game.findByIdAndUpdate(
+    gameModel.findByIdAndUpdate(
         req?.params?.id,
         updatedGame
     )
@@ -63,7 +64,7 @@ gamesRouter.put('/:id', (req, res) => {
 });
 //destroy
 gamesRouter.delete("/:id", (req, res) => {
-    Game.findByIdAndDelete(req?.params?.id)
+    gameModel.findByIdAndDelete(req?.params?.id)
         .then(game => res.status(202).send(game))
         .catch(err => res.status(500).send(err.message));
 });

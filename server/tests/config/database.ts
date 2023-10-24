@@ -10,15 +10,33 @@ export const connect = async () => {
     connection = await MongoClient.connect(mongoServer.getUri(), {});
 };
 
-export const close = async () => {
+export const disconnect = async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
     await mongoServer.stop();
 };
 
-export const clear = async () => {
-    const collections = mongoose.connection.collections;
-    for (const key in collections) {
-        await collections[key].deleteMany({});
-    }
-};
+// export const clear = async () => {
+//     const collections = mongoose.connection.collections;
+//     for (const key in collections) {
+//         await collections[key].deleteMany({});
+//     }
+// };
+
+// export async function connect() {
+//     try {
+//         const dbURI = "mongodb://localhost:27018";
+//         const dbName = "test";
+//         await mongoose.connect(dbURI, {dbName, autoCreate: true});
+//     } catch (error) {
+//         console.log("DB connect error");
+//     };
+// };
+
+// export async function disconnect() {
+//     try {
+//         await mongoose.connection.close();
+//     } catch (error) {
+//         console.log("DB disconnect error");
+//     }
+// };

@@ -7,18 +7,17 @@ import {
     test, 
     it} 
     from '@jest/globals';
-const app = require('express')();
-// import { app } from "../../src/server";
+// const app = require('express')();
+import { app } from "../../src/server";
 import * as db from "../config/database";
-import { types } from 'util';
 const request = require('supertest');
 
 // const agent = request.agent(app);
 
-beforeAll(async () => await db.connect());
-// afterEach(async () => await db.clear());
-afterAll(async () => await db.clear());
-afterAll(async () => await db.close());
+// beforeAll(async () => await db.connect());
+// // afterEach(async () => await db.clear());
+// afterAll(async () => await db.clear());
+// afterAll(async () => await db.close());
 
 const root: string = "http://localhost:4200";
 

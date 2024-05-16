@@ -8,7 +8,6 @@ import {beforeAll,
 // import the interface for typing
 import gameModel, {IGame, GameDocument} from "../../src/models/games.model";
 import { faker } from '@faker-js/faker';
-import { createFeature } from "@ngrx/store";
 
 const pickType = () => {
     let num = Math.floor(Math.random() * 3);

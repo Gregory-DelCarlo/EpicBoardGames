@@ -3,6 +3,7 @@ export const app = express(); // create express server
 import * as dotenev from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
+const listEndpoints = require('express-list-endpoints')
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 
@@ -33,14 +34,17 @@ mongoose.connect(ATLAS_URI)
         app.use(morgan("combined"));
 
         //connect routes
-        app.use("/games", gamesRouter);
+        // app.all('/api/');
+        app.use("/api/games", gamesRouter);
         
         // set port if we aren't in the testing environment
         if (NODE_ENV !== "test") {
-            app.listen(3000, ()=> {
-                console.log("listening on port 3000")
+            app.listen(process.env.PORT || 3000, () => {
+                console.log(`listening on port ${process.env.PORT || 3000}`)
             });
         }
+
+        console.log(listEndpoints(app));
     })
     .catch(error => console.log(error)); // throw any errors to the console
 

@@ -72,7 +72,7 @@ const GameSchema = new Schema<GameDocument>(
     }
 );
 
-// finally export the model binding it to the interface and using the Schema
+// finally create the model binding it to the interface and using the Schema
 const gameModel = mongoose.model('Game', GameSchema);
 /*
 Creating the mongoose model in this way creates

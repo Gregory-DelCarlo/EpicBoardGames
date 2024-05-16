@@ -1,5 +1,5 @@
 export interface Game {
-  _id: string;
+  _id?: string;
   name: string;
   type: "base game" | "expansion" | "art";
   description?: string;

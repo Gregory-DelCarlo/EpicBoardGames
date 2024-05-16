@@ -29,7 +29,7 @@ export class gameService {
   }
   // edit game
   changeGame(game: Game): Subject<Game> {
-    this.editGame(game._id, game);
+    this.editGame(game._id || '', game); //doesnt break when a game gets passed before refreshing the new mongoID
     return this.game$;
   }
   // delete game
@@ -41,7 +41,7 @@ export class gameService {
 // http calls
   private allGames() {
     this.http.get<Game[]>(
-      `${this.url}/games`
+      `${this.url}/api/games`
     ).subscribe(games => {
       this.games$.next(games);
     });
@@ -49,7 +49,7 @@ export class gameService {
 
   private getGame(game_id: string) {
     this.http.get<Game>(
-      `${this.url}/games/${game_id}`
+      `${this.url}/api/games/${game_id}`
     ).subscribe(game => {
       this.game$.next(game);
     })
@@ -57,7 +57,7 @@ export class gameService {
 
   private createGame(game: Game) {
     this.http.post<Game>(
-      `${this.url}/games`, game
+      `${this.url}/api/games`, game
     ).subscribe(game => {
       this.game$.next(game);
     });
@@ -65,7 +65,7 @@ export class gameService {
 
   private editGame(game_id: string, game: Game) {
     this.http.post<Game>(
-      `${this.url}/games/${game_id}`, game
+      `${this.url}/api/games/${game_id}`, game
     ).subscribe(game => {
       this.game$.next(game);
     });
@@ -73,7 +73,7 @@ export class gameService {
 
   private destroyGame(game_id: string) {
     this.http.delete<Game>(
-      `${this.url}/games/${game_id}`
+      `${this.url}/api/games/${game_id}`
     ).subscribe(game => {
       this.game$.next(game);
     })

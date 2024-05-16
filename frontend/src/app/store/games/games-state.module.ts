@@ -4,6 +4,8 @@ import { StoreModule } from "@ngrx/store";
 import { GameListComponent } from "../../components/games-list/games-list.component";
 import * as fromGames from "./games.reducer";
 import { gameService } from "./games.service";
+import { AddGameComponent } from "src/app/components/add-game/add-game.component";
+import { GameFormComponent } from "src/app/components/game-form/game-form.component";
 
 @NgModule({
   imports: [
@@ -13,8 +15,8 @@ import { gameService } from "./games.service";
       fromGames.gamesReducer
       )
     ],
-  declarations: [GameListComponent],
+  declarations: [GameListComponent, AddGameComponent, GameFormComponent],
   providers: [gameService],
-  bootstrap: [GameListComponent]
+  bootstrap: [GameListComponent, AddGameComponent, GameFormComponent]
 })
 export class GamesStateModule {}

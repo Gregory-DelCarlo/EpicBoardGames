@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { CommonModule } from '@angular/common';
 import { RootStoreModule } from '../store/root';
+import { FormBuilder, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,10 @@ import { RootStoreModule } from '../store/root';
     AppRoutingModule,
     HttpClientModule,
     RootStoreModule,
+    FormsModule
+  ],
+  providers: [
+    FormBuilder
   ],
   bootstrap: [AppComponent]
 })
